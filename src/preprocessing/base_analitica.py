@@ -176,7 +176,8 @@ def main():
     tamanho_mb = os.path.getsize(destino) / 1e6
     print(f"\nGravado: {destino} ({tamanho_mb:.1f} MB)")
 
-    # o resumo fica gravado, não só impresso — a Fase 2 perdeu ponto por só exibir
+    # o resumo fica gravado, não só impresso: métrica que só aparece na tela
+    # desaparece com a sessão e não serve para comparar execuções
     os.makedirs(settings.PATHS["reports"], exist_ok=True)
     relatorio = os.path.join(settings.PATHS["reports"], "base_analitica.json")
     with open(relatorio, "w", encoding="utf-8") as f:

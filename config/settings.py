@@ -76,7 +76,8 @@ N_FOLDS = 5
 
 # ---------------------------------------------------------------------------
 # Gates — a execução falha quando algum limiar não é atendido
-#   Resposta direta ao feedback da Fase 2: separar sem interromper não basta.
+#   Um limiar definido depois de ver o resultado não é gate, é carimbo. Estes
+#   valem como compromisso assumido antes: mudá-los exige justificar o porquê.
 # ---------------------------------------------------------------------------
 GATES = {
     # % mínimo de registros aprovados na validação de qualidade
