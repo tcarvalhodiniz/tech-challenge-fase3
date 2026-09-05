@@ -1,0 +1,20 @@
+{
+  "finops": {
+    "gb_processados": 0.27,
+    "custo_usd": 0.0017
+  },
+  "validacao": {
+    "linhas": 3867999,
+    "colunas": 22,
+    "anos": [
+      2023,
+      2024
+    ],
+    "municipios": 5548,
+    "escolas": 42811,
+    "alvo_nulo": 0,
+    "alvo_positivo_pct": 51.31,
+    "pct_com_contexto_municipio": 99.89,
+    "pct_com_territorio": 100.0
+  }
+}

@@ -11,15 +11,16 @@ A Fase 2 entregou a pipeline de engenharia de dados (Bronze → Silver → Gold)
 Indicador Criança Alfabetizada. A Gold está viva no BigQuery e é o ponto de
 partida desta fase.
 
-O feedback da entrega anterior apontou quatro lacunas que **este projeto trata
-explicitamente**:
+## Princípios de engenharia
 
-| Lacuna apontada na Fase 2 | Onde é resolvida aqui |
+Quatro compromissos que atravessam todos os passos:
+
+| Princípio | Onde aparece |
 |---|---|
-| Monitoramento ia para `display()` e desaparecia | Passo 7 — métricas persistidas em `reports/` |
-| Não havia orquestração; notebooks rodavam soltos | Passo 10 — pipeline com um comando e dependências declaradas |
-| Quarentena separava mas não interrompia a execução | Passo 10 — gates que falham abaixo do limiar |
-| Métrica calculada na Silver nunca chegava à Gold | Passo 4 — toda feature criada precisa ser consumida pelo modelo |
+| Métrica que se calcula, se grava | Passo 7 — resultados em `reports/`, não só na tela |
+| A pipeline roda com um comando | Passo 10 — dependências declaradas e execução reproduzível |
+| Qualidade que não passa, interrompe | Passo 10 — gates que falham abaixo do limiar |
+| Feature que se cria, se usa | Passo 4 — nada calculado fica órfão no caminho |
 
 ---
 

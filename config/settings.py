@@ -33,21 +33,21 @@ BILLING_PROJECT_ID = os.getenv("GCP_PROJECT", "tech-challenge-fiap-501217")
 
 GOLD_DATASET = "alfabetizacao_gold"
 TABELAS_GOLD = {
-    "indicador_municipio": "meta x realizado por municipio, com gap",
-    "evolucao_municipio": "trajetoria do indicador rumo a 2030",
+    "indicador_municipio": "meta x realizado por município, com gap",
+    "evolucao_municipio": "trajetória do indicador rumo a 2030",
     "indicador_uf": "meta x realizado por UF",
 }
 
 BD_PROJECT = "basedosdados"
 BD_DATASET = "br_inep_avaliacao_alfabetizacao"
-TABELA_MICRODADOS = "alunos"  # ~3,87 milhoes de alunos (2023-2024)
+TABELA_MICRODADOS = "alunos"  # ~3,87 milhões de alunos (2023-2024)
 
 # ---------------------------------------------------------------------------
 # Semântica de negócio
 # ---------------------------------------------------------------------------
 # Ponto de corte de proficiência do Saeb (Alfabetiza Brasil 2023)
 PONTO_CORTE_SAEB = 743
-ALVO = "alfabetizado"  # 0 = nao alfabetizado, 1 = alfabetizado
+ALVO = "alfabetizado"  # 0 = não alfabetizado, 1 = alfabetizado
 
 # ---------------------------------------------------------------------------
 # Anti-vazamento (data leakage)
@@ -58,9 +58,9 @@ ALVO = "alfabetizado"  # 0 = nao alfabetizado, 1 = alfabetizado
 # ---------------------------------------------------------------------------
 COLUNAS_VAZAMENTO = [
     "proficiencia",            # define o alvo diretamente
-    "peso_aluno",              # peso amostral pos-prova
-    "preenchimento_caderno",   # so existe apos a aplicacao
-    "presenca",                # so existe apos a aplicacao
+    "peso_aluno",              # peso amostral pós-prova
+    "preenchimento_caderno",   # só existe após a aplicação
+    "presenca",                # só existe após a aplicação
 ]
 
 # Identificadores: não entram como feature, mas servem para agrupar na validação
@@ -76,7 +76,8 @@ N_FOLDS = 5
 
 # ---------------------------------------------------------------------------
 # Gates — a execução falha quando algum limiar não é atendido
-#   Resposta direta ao feedback da Fase 2: separar sem interromper não basta.
+#   Um limiar definido depois de ver o resultado não é gate, é carimbo. Estes
+#   valem como compromisso assumido antes: mudá-los exige justificar o porquê.
 # ---------------------------------------------------------------------------
 GATES = {
     # % mínimo de registros aprovados na validação de qualidade

@@ -1,5 +1,6 @@
 # Fonte de dados (camada Gold da Fase 2 + microdados na Base dos Dados)
 google-cloud-bigquery>=3.0.0
+google-cloud-bigquery-storage>=2.24.0  # download via Arrow; sem ela a extracao leva ~1h
 db-dtypes>=1.2.0
 pyarrow>=14.0.0
 
