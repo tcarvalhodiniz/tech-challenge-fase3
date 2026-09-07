@@ -71,9 +71,13 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       concordância), 27,3% da classe negativa é ausência e não desempenho, e o
       indicador oficial confunde aprendizagem com participação.
 
-- [ ] **Passo 4 — Engenharia de atributos + anti-vazamento**
-      Aplicar a exclusão declarada, criar agregados de escola e município
-      **dentro das folds** para não vazar, e enriquecer com fonte externa.
+- [x] **Passo 4 — Engenharia de atributos + anti-vazamento**
+      A investigação encontrou um segundo vazamento: os agregados da Gold
+      (`taxa_municipio`, `gap_municipio`, `atingiu_meta`, `taxa_uf`) são
+      calculados no mesmo período, a partir dos próprios alunos a prever.
+      Substituídos por versões defasadas de 2023. Agregados por escola foram
+      descartados porque o `id_escola` também é reaproveitado entre anos.
+      População final: 1.851.852 alunos de 2024. Detalhes em `reports/features.md`.
 
 - [ ] **Passo 5 — Pipeline scikit-learn**
       `ColumnTransformer` com imputação de numéricas, encoding de categóricas e

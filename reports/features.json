@@ -1,0 +1,56 @@
+{
+  "populacao": {
+    "linhas_na_base": 3867999,
+    "linhas_modelaveis": 1851852,
+    "ano_modelado": 2024,
+    "ano_das_features_defasadas": 2023,
+    "municipios": 5517,
+    "alvo_positivo_pct": 59.78
+  },
+  "exclusoes": {
+    "vazamento_direto": [
+      "proficiencia",
+      "peso_aluno",
+      "preenchimento_caderno",
+      "presenca"
+    ],
+    "agregado_do_mesmo_periodo": [
+      "taxa_municipio",
+      "gap_municipio",
+      "atingiu_meta",
+      "taxa_uf"
+    ],
+    "identificador_instavel": [
+      "id_aluno",
+      "id_escola"
+    ],
+    "sem_uso": [
+      "serie",
+      "meta_uf",
+      "gap_uf",
+      "rede_desc"
+    ]
+  },
+  "features": [
+    "alunos_municipio_ant",
+    "caderno",
+    "meta_municipio",
+    "rede",
+    "regiao",
+    "sem_historico_municipio",
+    "sigla_uf",
+    "taxa_municipio_ant",
+    "taxa_uf_ant"
+  ],
+  "cobertura_features": {
+    "alunos_municipio_ant": 76.81,
+    "caderno": 100.0,
+    "meta_municipio": 84.7,
+    "rede": 100.0,
+    "regiao": 100.0,
+    "sem_historico_municipio": 100.0,
+    "sigla_uf": 100.0,
+    "taxa_municipio_ant": 76.81,
+    "taxa_uf_ant": 76.89
+  }
+}
