@@ -79,9 +79,12 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       descartados porque o `id_escola` também é reaproveitado entre anos.
       População final: 1.851.852 alunos de 2024. Detalhes em `reports/features.md`.
 
-- [ ] **Passo 5 — Pipeline scikit-learn**
+- [x] **Passo 5 — Pipeline scikit-learn**
       `ColumnTransformer` com imputação de numéricas, encoding de categóricas e
-      escala, tudo integrado ao estimador em um único `Pipeline`.
+      escala, tudo integrado ao estimador em um único `Pipeline`. As 9 features
+      viram 65 colunas. Separação e validação cruzada agrupadas por município,
+      com zero territórios em comum entre as partições. Inclui checagem que
+      confirma o ajuste restrito ao treino. Detalhes em `reports/pipeline.md`.
 
 - [ ] **Passo 6 — Modelagem e otimização**
       Baseline (classe majoritária e regressão logística), depois modelos de
