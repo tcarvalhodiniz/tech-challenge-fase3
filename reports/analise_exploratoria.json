@@ -1,0 +1,54 @@
+{
+  "volume": {
+    "linhas": 3867999,
+    "municipios": 5548,
+    "escolas": 42811,
+    "anos": [
+      2023,
+      2024
+    ]
+  },
+  "vazamento": {
+    "concordancia_corte_vs_alvo": 100.0,
+    "prof_max_classe_0": 742.9998188,
+    "prof_min_classe_1": 743.0
+  },
+  "ausencia": {
+    "alunos_sem_prova": 513338,
+    "pct_da_base": 13.27,
+    "pct_da_classe_negativa": 27.26,
+    "por_regiao": {
+      "Centro-Oeste": 11.85,
+      "Nordeste": 9.17,
+      "Norte": 17.98,
+      "Sudeste": 12.56,
+      "Sul": 18.49
+    }
+  },
+  "alvo": {
+    "taxa_oficial_pct": 51.31,
+    "taxa_entre_testados_pct": 59.16,
+    "por_regiao_testados": {
+      "Centro-Oeste": 62.0,
+      "Nordeste": 55.75,
+      "Norte": 50.93,
+      "Sudeste": 61.25,
+      "Sul": 64.47
+    }
+  },
+  "correlacoes_contexto": {
+    "taxa_municipio": 0.326,
+    "meta_municipio": 0.251,
+    "gap_municipio": -0.202,
+    "taxa_uf": 0.243
+  },
+  "cobertura": {
+    "taxa_municipio": 99.89,
+    "meta_municipio": 45.93,
+    "gap_municipio": 45.93,
+    "taxa_uf": 99.28,
+    "meta_uf": 0.0,
+    "gap_uf": 0.0,
+    "sigla_uf": 100.0
+  }
+}

@@ -16,10 +16,10 @@ Brasil* (INEP, 2023) fixou o **ponto de corte de 743 pontos** na escala Saeb: a
 partir dele a criança é considerada alfabetizada. A meta nacional é atingir **80%
 até 2030**.
 
-Conhecer o indicador atual, porém, não basta. Gestores públicos precisam
-**antecipar risco** — saber onde a alfabetização tende a falhar antes que o
-resultado apareça — e entender **quais fatores pesam mais** nesse desfecho. É esse
-o espaço que a Ciência de Dados ocupa aqui: transformar dado público em decisão.
+Conhecer o indicador atual, porém, não basta. Gestores públicos precisam antecipar
+risco, ou seja, saber onde a alfabetização tende a falhar antes que o resultado
+apareça, e entender quais fatores pesam mais nesse desfecho. É esse o espaço que a
+Ciência de Dados ocupa aqui: transformar dado público em decisão.
 
 ## 2. Objetivo analítico
 
@@ -55,17 +55,17 @@ pontos. As classes estão praticamente equilibradas:
 
 **Chaves de integração:** `id_municipio`, `ano`, `rede`, `serie`.
 
-> Enriquecimento externo previsto (IBGE, Atlas do Desenvolvimento Humano) —
+> Enriquecimento externo previsto (IBGE, Atlas do Desenvolvimento Humano),
 > documentado na seção de modelagem quando aplicado.
 
 ### Tratamento de data leakage
 
-A coluna **`proficiencia` define o alvo** (`alfabetizado = proficiencia >= 743`) —
-as médias por classe são 702,3 e 779,8, separadas exatamente no corte. Mantê-la
-como preditora produziria acerto perfeito e um modelo sem utilidade prática.
+A coluna `proficiencia` define o alvo (`alfabetizado = proficiencia >= 743`). As
+médias por classe são 702,3 e 779,8, separadas exatamente no corte. Mantê-la como
+preditora produziria acerto perfeito e um modelo sem utilidade prática.
 
-Ficam fora do conjunto de treino, por só existirem **depois** da prova aplicada —
-ou seja, informação indisponível no momento em que a predição teria valor:
+As colunas abaixo ficam fora do conjunto de treino porque só existem depois da
+prova aplicada, quando a predição já não teria valor:
 
 | Coluna | Motivo da exclusão |
 |---|---|
@@ -78,6 +78,32 @@ A regra está declarada em [`config/settings.py`](config/settings.py) e é aplic
 pela pipeline, não manualmente.
 
 ## 4. Etapas de modelagem
+
+### Análise exploratória
+
+Relatório completo em [`reports/analise-exploratoria.md`](reports/analise-exploratoria.md);
+o percurso da análise, em [`notebooks/01_analise_exploratoria.ipynb`](notebooks/01_analise_exploratoria.ipynb).
+
+Três achados definem o desenho do modelo.
+
+O primeiro é que a concordância entre `proficiencia >= 743` e o alvo é de 100%: a
+proficiência máxima da classe negativa é 742,999819 e a mínima da positiva é 743.
+Não existe linha fora do padrão. O mesmo cruzamento mostrou que todo aluno ausente
+está classificado como não alfabetizado, o que torna `presenca` e
+`preenchimento_caderno` igualmente determinantes.
+
+O segundo veio dessa descoberta. Dos 1.883.453 alunos não alfabetizados, 513.338
+(27,3%) nunca fizeram a prova. Como as variáveis que sinalizam ausência são as
+excluídas por vazamento, esses registros entrariam no treino sem sinal aprendível,
+e por isso a modelagem usa apenas a população testada.
+
+O terceiro é que separar aprendizagem de participação reordena as regiões. O Sul sai
+de 52,5% (3º lugar) no indicador oficial para 64,5% (1º lugar) entre os testados,
+porque tem a maior ausência do país, de 18,5%. O Nordeste apresenta o quadro oposto:
+desempenho abaixo da média com a maior participação. São problemas distintos e pedem
+respostas de política pública distintas.
+
+### Modelagem
 
 _A preencher — Passos 4 a 6 do [planejamento](docs/planejamento.md)._
 

@@ -29,7 +29,7 @@ Quatro compromissos que atravessam todos os passos:
 **1. O alvo vem pronto e está equilibrado.**
 A coluna `alfabetizado` já existe nos microdados. As classes ficam perto de 50/50,
 o que dispensa técnicas de rebalanceamento como primeira escolha e torna a
-acurácia uma métrica legível — ainda assim, ROC-AUC e PR-AUC são as métricas
+acurácia uma métrica legível. Ainda assim, ROC-AUC e PR-AUC são as métricas
 principais.
 
 **2. `proficiencia` é vazamento e sai da base.**
@@ -40,8 +40,8 @@ separam exatamente no corte de 743. Junto com ela saem `peso_aluno`, `presenca` 
 
 **3. A força preditiva virá do contexto, não do aluno.**
 Removido o vazamento, sobram poucas variáveis intrínsecas ao aluno (`rede`,
-`caderno`) e `serie` é constante. O sinal precisa vir do município — indicador,
-meta e gap da Gold — e de enriquecimento socioeconômico externo. Isso é
+`caderno`) e `serie` é constante. O sinal precisa vir do município
+(indicador, meta e gap da Gold) e de enriquecimento socioeconômico externo. Isso é
 consistente com o enunciado, que pede variáveis educacionais, territoriais e
 socioeconômicas.
 
@@ -59,14 +59,17 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       bloqueada), `requirements.txt`, configuração central e README com as 11
       seções mapeadas.
 
-- [ ] **Passo 2 — Base analítica**
-      Extrair os microdados e juntar com a Gold da Fase 2 por
-      (`id_municipio`, `ano`, `rede`, `serie`). Materializar em parquet. Registrar
-      o custo da consulta (FinOps).
+- [x] **Passo 2 — Base analítica**
+      Microdados juntados com a Gold da Fase 2 por (`id_municipio`, `ano`, `rede`,
+      `serie`), com 99,89% de casamento. Território derivado do código IBGE, o que
+      dá cobertura total. 3.867.999 linhas em parquet.
 
-- [ ] **Passo 3 — Análise exploratória**
+- [x] **Passo 3 — Análise exploratória**
       Distribuições, correlações, ausentes, alvo por UF/região/rede. Figuras em
       `images/`. Fecha com hipóteses analíticas que orientam a modelagem.
+      Achados em `reports/analise-exploratoria.md`: o vazamento é exato (100% de
+      concordância), 27,3% da classe negativa é ausência e não desempenho, e o
+      indicador oficial confunde aprendizagem com participação.
 
 - [ ] **Passo 4 — Engenharia de atributos + anti-vazamento**
       Aplicar a exclusão declarada, criar agregados de escola e município
