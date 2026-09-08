@@ -55,6 +55,38 @@ pontos. As classes estão praticamente equilibradas:
 
 **Chaves de integração:** `id_municipio`, `ano`, `rede`, `serie`.
 
+### Relação com a camada Gold da Fase 2
+
+A Gold da Fase 2 foi construída para responder a uma pergunta de acompanhamento:
+*como cada município está em relação à sua meta*. É uma pergunta de relatório, no
+grão de município. Esta fase pergunta *se uma criança será alfabetizada*, que é
+outra pergunta e outro grão.
+
+Das 14 variáveis do modelo final, apenas uma vem da Gold:
+
+| Origem | Variáveis |
+|---|---|
+| Microdados do Alfabetiza Brasil | 8 |
+| Fontes públicas externas (IDEB, IBGE) | 5 |
+| Gold da Fase 2 | 1 (`meta_municipio`) |
+
+O motivo não é desuso da camada, e sim o resultado do tratamento de vazamento.
+As colunas `taxa_municipio`, `gap_municipio`, `atingiu_meta` e `taxa_uf` são
+agregados calculados **no mesmo período** que o alvo, a partir dos próprios alunos
+que se quer prever, e só existem depois da prova aplicada. `meta_uf` e `gap_uf`
+chegam 100% nulas. Sobra a meta municipal, que é alvo de política definido com
+antecedência e não resultado medido.
+
+A observação que decorre disso: **o que qualifica a Gold para relatório a
+desqualifica para predição**. O `taxa_realizada` é a métrica que faz dela uma boa
+tabela de acompanhamento e é exatamente o vazamento que invalida um modelo. Uma
+camada analítica é construída para um propósito, e uma Gold de BI não é
+automaticamente reaproveitável para aprendizado de máquina.
+
+O contexto municipal que o modelo usa foi então reconstruído a partir dos
+microdados de 2023, com um ano de defasagem, e complementado por indicadores
+socioeconômicos externos.
+
 > Enriquecimento externo previsto (IBGE, Atlas do Desenvolvimento Humano),
 > documentado na seção de modelagem quando aplicado.
 

@@ -134,9 +134,16 @@ aluno até verificar isto:
 Mesmo código, município e escola diferentes. E como toda a base é de 2º ano, uma
 criança avaliada em 2023 estaria no 3º ano em 2024 e não deveria reaparecer aqui.
 Dos 1.515.671 códigos presentes nos dois anos, 1.274.442 aparecem em mais de um
-município. O identificador é reaproveitado, não acompanha a mesma criança. Isso
-descarta qualquer feature de trajetória individual e leva o agrupamento da validação
-para o nível de município.
+município.
+
+A consulta aos metadados da fonte confirma o motivo: a coluna `id_escola` é
+descrita como *"Máscara do código da escola (códigos fictícios)"*. São
+identificadores anonimizados, reatribuídos a cada edição para impedir que aluno e
+escola sejam rastreados entre anos. O comportamento não é defeito da base, é
+requisito de privacidade.
+
+Isso descarta qualquer feature de trajetória individual e leva o agrupamento da
+validação para o nível de município, o único identificador real.
 
 ## 6. Hipóteses e decisões para a modelagem
 

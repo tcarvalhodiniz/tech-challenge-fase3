@@ -40,9 +40,10 @@ A hipótese inicial foi ruído de amostra pequena, já que a escola tem 41 aluno
 média. Exigir um mínimo de 40 alunos não mudou nada, a correlação ficou em +0,094.
 
 O motivo é outro. Das 36.051 escolas presentes nos dois anos, **35.187 (97,6%)
-aparecem em municípios diferentes**. O `id_escola` é reaproveitado entre anos, do
-mesmo modo que o `id_aluno`. A taxa "da escola" estava casando escolas que não são a
-mesma.
+aparecem em municípios diferentes**. A descrição da coluna na fonte explica por quê:
+`id_escola` é *"Máscara do código da escola (códigos fictícios)"*. É um
+identificador anonimizado, reatribuído a cada edição para impedir o rastreamento da
+escola entre anos. A taxa "da escola" estava casando escolas que não são a mesma.
 
 O único identificador estável é o `id_municipio`, que é o código IBGE.
 
