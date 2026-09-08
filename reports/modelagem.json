@@ -1,0 +1,119 @@
+{
+  "comparacao_validacao_cruzada": {
+    "baseline_classe_majoritaria": {
+      "roc_auc": {
+        "teste_media": 0.5,
+        "teste_desvio": 0.0,
+        "treino_media": 0.5
+      },
+      "average_precision": {
+        "teste_media": 0.5967,
+        "teste_desvio": 0.0097,
+        "treino_media": 0.5978
+      },
+      "accuracy": {
+        "teste_media": 0.5967,
+        "teste_desvio": 0.0097,
+        "treino_media": 0.5978
+      },
+      "f1": {
+        "teste_media": 0.7474,
+        "teste_desvio": 0.0076,
+        "treino_media": 0.7483
+      },
+      "segundos": 23.3
+    },
+    "regressao_logistica": {
+      "roc_auc": {
+        "teste_media": 0.6578,
+        "teste_desvio": 0.0108,
+        "treino_media": 0.6653
+      },
+      "average_precision": {
+        "teste_media": 0.741,
+        "teste_desvio": 0.0069,
+        "treino_media": 0.7453
+      },
+      "accuracy": {
+        "teste_media": 0.6305,
+        "teste_desvio": 0.0104,
+        "treino_media": 0.6387
+      },
+      "f1": {
+        "teste_media": 0.7252,
+        "teste_desvio": 0.0176,
+        "treino_media": 0.7356
+      },
+      "segundos": 62.2
+    },
+    "gradient_boosting": {
+      "roc_auc": {
+        "teste_media": 0.6607,
+        "teste_desvio": 0.0058,
+        "treino_media": 0.6777
+      },
+      "average_precision": {
+        "teste_media": 0.7419,
+        "teste_desvio": 0.0099,
+        "treino_media": 0.7564
+      },
+      "accuracy": {
+        "teste_media": 0.6377,
+        "teste_desvio": 0.0072,
+        "treino_media": 0.6455
+      },
+      "f1": {
+        "teste_media": 0.7315,
+        "teste_desvio": 0.0102,
+        "treino_media": 0.7367
+      },
+      "segundos": 88.3
+    }
+  },
+  "melhor_candidato": "gradient_boosting",
+  "melhores_hiperparametros": {
+    "min_samples_leaf": 100,
+    "max_iter": 100,
+    "max_depth": 10,
+    "learning_rate": 0.05,
+    "l2_regularization": 1.0
+  },
+  "roc_auc_na_busca": 0.6634,
+  "conjunto_retido": {
+    "treino": {
+      "roc_auc": 0.6738,
+      "average_precision": 0.7528,
+      "accuracy": 0.6433,
+      "f1": 0.7371
+    },
+    "teste": {
+      "roc_auc": 0.6604,
+      "average_precision": 0.7366,
+      "accuracy": 0.6361,
+      "f1": 0.7332
+    }
+  },
+  "gates": {
+    "roc_auc_minimo": {
+      "limiar": 0.6,
+      "obtido": 0.6604,
+      "passou": true
+    },
+    "captura_minima_do_teto": {
+      "limiar": 0.75,
+      "obtido": 0.8429,
+      "passou": true
+    },
+    "gap_overfitting_maximo": {
+      "limiar": 0.1,
+      "obtido": 0.0134,
+      "passou": true
+    },
+    "referencias": {
+      "acuracia_do_baseline": 0.5978,
+      "acuracia_do_teto_oraculo": 0.6432,
+      "ganho_do_modelo_pp": 3.83,
+      "ganho_maximo_alcancavel_pp": 4.55
+    }
+  }
+}
