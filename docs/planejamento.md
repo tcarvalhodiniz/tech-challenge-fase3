@@ -86,9 +86,14 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       com zero territórios em comum entre as partições. Inclui checagem que
       confirma o ajuste restrito ao treino. Detalhes em `reports/pipeline.md`.
 
-- [ ] **Passo 6 — Modelagem e otimização**
-      Baseline (classe majoritária e regressão logística), depois modelos de
-      árvore. Tuning de hiperparâmetros com validação cruzada agrupada.
+- [x] **Passo 6 — Modelagem e otimização**
+      Baseline, regressão logística e gradient boosting na mesma validação
+      agrupada; o boosting venceu (ROC-AUC 0,6607) e foi otimizado por busca
+      aleatória. O gate de acurácia reprovou na primeira execução, o que levou
+      ao enriquecimento socioeconômico (IDEB, PIB per capita, população) e à
+      medição do teto alcançável. O critério foi revisado com justificativa
+      registrada. Resultado final: ROC-AUC 0,6604 no teste, com os três gates
+      aprovados. Detalhes em `reports/modelagem.md`.
 
 - [ ] **Passo 7 — Avaliação**
       ROC-AUC, PR-AUC, precisão, recall, F1, matriz de confusão, calibração e

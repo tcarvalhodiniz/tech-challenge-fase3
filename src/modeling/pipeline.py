@@ -37,6 +37,12 @@ NUMERICAS = [
     "alunos_municipio_ant",
     "taxa_uf_ant",
     "meta_municipio",
+    # socioeconômicas e educacionais externas, por município
+    "ideb_municipio",
+    "aprovacao_municipio",
+    "saeb_padronizado_municipio",
+    "log_populacao_municipio",
+    "log_pib_per_capita_municipio",
 ]
 CATEGORICAS = ["rede", "caderno", "sigla_uf", "regiao"]
 BINARIAS = ["sem_historico_municipio"]

@@ -72,6 +72,17 @@ def agregados_defasados(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return muni, uf
 
 
+def carregar_externo() -> pd.DataFrame | None:
+    """
+    Indicadores socioeconômicos por município, se já tiverem sido materializados.
+
+    Ficam opcionais de propósito: a base de modelagem continua sendo construída
+    sem acesso ao BigQuery, e o enriquecimento entra quando disponível.
+    """
+    caminho = os.path.join(settings.PATHS["processed"], "externo_municipio.parquet")
+    return pd.read_parquet(caminho) if os.path.exists(caminho) else None
+
+
 def construir(df: pd.DataFrame) -> pd.DataFrame:
     """Aplica as exclusões e acopla as features defasadas."""
     alvo = populacao_modelavel(df)
@@ -79,6 +90,10 @@ def construir(df: pd.DataFrame) -> pd.DataFrame:
 
     alvo = alvo.merge(muni, on=["id_municipio", "rede"], how="left")
     alvo = alvo.merge(uf, on=["sigla_uf", "rede"], how="left")
+
+    externo = carregar_externo()
+    if externo is not None:
+        alvo = alvo.merge(externo, on="id_municipio", how="left")
 
     # município sem histórico é um caso real de partida a frio, não um defeito:
     # marcar a ausência preserva a informação de que não há histórico

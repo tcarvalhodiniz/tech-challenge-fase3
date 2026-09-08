@@ -1,0 +1,19 @@
+{
+  "fontes": {
+    "ideb": "basedosdados.br_inep_ideb.municipio (2023, iniciais)",
+    "pib": "basedosdados.br_ibge_pib.municipio (2022)",
+    "populacao": "basedosdados.br_ibge_populacao.municipio (2023)"
+  },
+  "finops": {
+    "gb_processados": 0.035,
+    "custo_usd": 0.00022
+  },
+  "municipios": 5570,
+  "cobertura": {
+    "ideb_municipio": 97.49,
+    "aprovacao_municipio": 98.56,
+    "saeb_padronizado_municipio": 97.5,
+    "log_populacao_municipio": 100.0,
+    "log_pib_per_capita_municipio": 100.0
+  }
+}
