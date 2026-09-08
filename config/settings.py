@@ -63,8 +63,30 @@ COLUNAS_VAZAMENTO = [
     "presenca",                # só existe após a aplicação
 ]
 
-# Identificadores: não entram como feature, mas servem para agrupar na validação
-COLUNAS_ID = ["id_aluno", "id_escola", "id_municipio"]
+# Agregados do mesmo período. São calculados a partir dos próprios alunos que se
+# quer prever e só existem depois que todos fizeram a prova. É o mesmo vazamento
+# da proficiência, em escala agregada. As versões defasadas substituem estas.
+COLUNAS_AGREGADO_MESMO_PERIODO = [
+    "taxa_municipio",          # taxa do município no próprio ano
+    "gap_municipio",           # derivado da taxa do próprio ano
+    "atingiu_meta",            # derivado da taxa do próprio ano
+    "taxa_uf",                 # taxa da UF no próprio ano
+]
+
+# Identificadores reaproveitados entre anos: o mesmo código aparece em
+# municípios diferentes, então não acompanham a mesma entidade ao longo do tempo.
+# Só o id_municipio é estável, por ser o código IBGE.
+COLUNAS_ID_INSTAVEL = ["id_aluno", "id_escola"]
+
+# Sem variação, sem dado ou redundantes
+COLUNAS_SEM_USO = [
+    "serie",                   # constante: todos no 2º ano
+    "meta_uf", "gap_uf",       # 100% nulas (meta por UF só existe para rede 5)
+    "rede_desc",               # redundante com `rede`
+]
+
+# Identificador estável, usado para agrupar a validação
+COLUNA_GRUPO = "id_municipio"
 
 # ---------------------------------------------------------------------------
 # Reprodutibilidade
