@@ -1,0 +1,47 @@
+{
+  "por_classe": {
+    "nao_alfabetizado": {
+      "precision": 0.5819050462824724,
+      "recall": 0.33881803135040406,
+      "f1-score": 0.4282719245425657,
+      "support": 143794.0
+    },
+    "alfabetizado": {
+      "precision": 0.6527383100422964,
+      "recall": 0.8362055654078133,
+      "f1-score": 0.7331685453184135,
+      "support": 213713.0
+    }
+  },
+  "acuracia": 0.6361,
+  "brier_score": 0.2222,
+  "agregado_por_municipio": {
+    "municipios_avaliados": 1048,
+    "correlacao_pearson": 0.8265,
+    "correlacao_spearman": 0.8192,
+    "erro_medio_absoluto_pp": 7.47
+  },
+  "curva_aprendizado": {
+    "tamanhos": [
+      162704,
+      393202,
+      623700,
+      854198,
+      1084697
+    ],
+    "roc_auc_treino": [
+      0.6802,
+      0.6758,
+      0.6757,
+      0.6755,
+      0.6754
+    ],
+    "roc_auc_validacao": [
+      0.6624,
+      0.6635,
+      0.6634,
+      0.664,
+      0.6634
+    ]
+  }
+}

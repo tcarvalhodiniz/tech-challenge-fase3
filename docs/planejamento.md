@@ -95,9 +95,14 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       registrada. Resultado final: ROC-AUC 0,6604 no teste, com os três gates
       aprovados. Detalhes em `reports/modelagem.md`.
 
-- [ ] **Passo 7 — Avaliação**
-      ROC-AUC, PR-AUC, precisão, recall, F1, matriz de confusão, calibração e
-      curvas de aprendizado. Métricas gravadas em `reports/`, não só exibidas.
+- [x] **Passo 7 — Avaliação**
+      Curvas ROC e precisão-revocação, matriz de confusão, calibração e curva de
+      aprendizado. Dois achados definem a aplicação: agregado por município a
+      correlação com a taxa real é 0,827, contra ROC-AUC de 0,66 por aluno; e a
+      curva de aprendizado é plana, o que confirma que o limite é a granularidade
+      e não o volume. A análise de limiar mostra que operar em 0,65 encontra 74%
+      das crianças em risco, contra 34% no padrão. Detalhes em
+      `reports/avaliacao.md`.
 
 - [ ] **Passo 8 — Interpretabilidade**
       Permutation Importance e SHAP. Responde "quais fatores mais impactam a
