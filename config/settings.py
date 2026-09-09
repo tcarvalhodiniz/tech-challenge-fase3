@@ -73,9 +73,11 @@ COLUNAS_AGREGADO_MESMO_PERIODO = [
     "taxa_uf",                 # taxa da UF no próprio ano
 ]
 
-# Identificadores reaproveitados entre anos: o mesmo código aparece em
-# municípios diferentes, então não acompanham a mesma entidade ao longo do tempo.
-# Só o id_municipio é estável, por ser o código IBGE.
+# Identificadores anonimizados. A própria fonte descreve `id_escola` como
+# "Máscara do código da escola (códigos fictícios)", e o comportamento de
+# `id_aluno` é o mesmo: o código é reatribuído a cada edição, então aparece em
+# municípios diferentes de um ano para o outro e não acompanha a mesma entidade.
+# Só o id_municipio é estável, por ser o código IBGE de 7 dígitos.
 COLUNAS_ID_INSTAVEL = ["id_aluno", "id_escola"]
 
 # Sem variação, sem dado ou redundantes
