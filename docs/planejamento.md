@@ -104,9 +104,12 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       das crianças em risco, contra 34% no padrão. Detalhes em
       `reports/avaliacao.md`.
 
-- [ ] **Passo 8 — Interpretabilidade**
-      Permutation Importance e SHAP. Responde "quais fatores mais impactam a
-      alfabetização".
+- [x] **Passo 8 — Interpretabilidade**
+      Importância por permutação e SHAP, com as contribuições somadas de volta às
+      variáveis originais. A taxa histórica do município domina, com queda de
+      0,0368 no ROC-AUC contra 0,0160 da segunda colocada, e as cinco primeiras
+      são territoriais. O `caderno` não carrega sinal, o que encerra a ponta solta
+      do Passo 4. Detalhes em `reports/interpretabilidade.md`.
 
 - [ ] **Passo 9 — Aplicação estratégica**
       Escore de risco por município, agrupamento de regiões com padrão
