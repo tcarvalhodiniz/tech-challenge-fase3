@@ -1,8 +1,8 @@
 # Interpretabilidade
 
 Duas perguntas do desafio são respondidas aqui: quais variáveis têm maior
-influência no modelo, e quais fatores mais impactam a alfabetização. Elas parecem
-a mesma pergunta e não são — a diferença aparece na última seção.
+influência no modelo, e quais fatores mais impactam a alfabetização. A distinção
+entre as duas é tratada na última seção.
 
 Foram usadas duas técnicas. A **importância por permutação** embaralha uma
 variável por vez e mede a queda no ROC-AUC, sobre 120 mil alunos do conjunto
@@ -58,17 +58,17 @@ distribuição da amostra e não o comportamento da variável.
 O efeito da taxa histórica é monotônico e cruza o zero perto de 62%. Abaixo disso
 a variável empurra a predição para não alfabetizado; acima, para alfabetizado.
 
-## 2. O que descreve o aluno quase não pesa
+## 2. Peso das variáveis do aluno
 
 A `rede` fica em décimo, com queda de 0,0012, e o `caderno` não aparece entre as
 dez primeiras.
 
 Isso encerra uma ponta solta deixada no passo de engenharia de atributos, onde
 ficou registrado que o `caderno` seguia sem avaliação individual. Ele identifica a
-versão da prova aplicada e, se a atribuição for aleatória como se espera, não deve
-carregar sinal. Não carrega.
+versão da prova aplicada, e a expectativa era que a atribuição fosse aleatória e
+portanto sem sinal. Os números confirmam essa expectativa.
 
-## 3. O porte do município: efeito real, mas quase todo indireto
+## 3. Efeito do porte do município
 
 O SHAP aponta que população maior empurra a predição para baixo, com correlação de
 −0,82, enquanto a associação bruta com o alvo é de apenas −0,045. A diferença
@@ -101,36 +101,37 @@ inferiores nem é consistente. O único lugar onde o porte ainda pesa é entre o
 municípios de histórico alto: os muito grandes ficam quase seis pontos abaixo dos
 pequenos, 71,3% contra 77,0%.
 
-A leitura razoável é que o porte não age por si. Ele vem junto do histórico, e o
-histórico já está no modelo. A exceção sugere que manter desempenho alto é mais
-difícil em escala, o que é uma hipótese e não um resultado.
+A leitura razoável é que o porte não age por si: ele vem junto do histórico, que já
+está no modelo. A diferença que sobra entre os municípios de bom desempenho pode
+indicar que manter resultado alto é mais difícil em escala, mas isso é uma hipótese
+que estes dados não testam.
 
-## 4. A diferença entre as duas perguntas
+## 4. As duas perguntas do desafio
 
-**Quais variáveis têm maior influência no modelo?** Tem resposta direta: a taxa
-histórica do município, seguida da UF e da meta municipal. As tabelas acima
-respondem.
+A pergunta sobre quais variáveis influenciam o modelo tem resposta direta nas
+tabelas acima: a taxa histórica do município, seguida da UF e da meta municipal.
 
-**Quais fatores mais impactam a alfabetização?** Aqui a resposta precisa de
-cuidado. O modelo mede associação dentro do que enxerga, e o que ele enxerga são
-catorze variáveis, todas de município. Não há nenhuma sobre a criança, o professor,
-a turma ou a família.
+A pergunta sobre quais fatores impactam a alfabetização exige mais cuidado. O
+modelo enxerga catorze variáveis, todas de município, e nenhuma sobre a criança, o
+professor, a turma ou a família. O território acaba absorvendo tudo o que está
+correlacionado com ele.
 
-Isso significa que **o território absorve tudo o que está correlacionado com ele**.
-Quando `taxa_municipio_ant` aparece no topo, ela não está dizendo que a taxa
-passada causa a taxa futura. Está representando o conjunto de coisas que fazem um
-município alfabetizar bem: formação docente, gestão, material, renda das famílias,
-continuidade de política. Nada disso está medido, e tudo isso está embutido ali.
+Quando a `taxa_municipio_ant` aparece no topo, ela não está indicando que a taxa
+passada causa a taxa futura. Ela representa o conjunto de coisas que fazem um
+município alfabetizar bem: formação docente, gestão, material didático, renda das
+famílias, continuidade de política pública. Nenhuma dessas variáveis está na base,
+mas todas influenciam o valor daquela coluna.
 
-Duas leituras erradas que os números permitiriam, e que não se sustentam:
+Duas conclusões que os números permitiriam tirar e que não se sustentam:
 
-- *"Subir o IDEB causa alfabetização."* Os dois são consequência da mesma
-  qualidade de ensino. Perseguir o indicador não move a causa.
-- *"Cidade pequena alfabetiza melhor, então descentralizar resolve."* O efeito do
-  porte quase todo desaparece ao controlar pelo histórico.
+- Que subir o IDEB causaria alfabetização. Os dois indicadores são consequência da
+  mesma qualidade de ensino, então mover um sem mexer na causa comum não deve
+  produzir efeito.
+- Que cidade pequena alfabetiza melhor e descentralizar resolveria. O efeito do
+  porte quase todo desaparece ao controlar pelo histórico, como mostra a seção
+  anterior.
 
-A afirmação que os dados sustentam é mais modesta e mais útil: **o desempenho
-passado do município é o melhor preditor disponível do desempenho futuro**, e a
-desigualdade entre territórios é estrutural o bastante para se repetir de um ano
-para o outro. É por isso que priorizar territórios funciona, e é o que o passo de
-aplicação estratégica desenvolve.
+O que os dados sustentam é que o desempenho passado do município é o melhor
+preditor disponível do desempenho futuro, e que a desigualdade entre territórios se
+repete de um ano para o outro com regularidade suficiente para orientar
+priorização. O passo de aplicação estratégica parte daí.
