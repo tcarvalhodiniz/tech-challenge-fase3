@@ -111,9 +111,14 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       são territoriais. O `caderno` não carrega sinal, o que encerra a ponta solta
       do Passo 4. Detalhes em `reports/interpretabilidade.md`.
 
-- [ ] **Passo 9 — Aplicação estratégica**
-      Escore de risco por município, agrupamento de regiões com padrão
-      semelhante e projeção de quem tende a não atingir a meta de 2030.
+- [x] **Passo 9 — Aplicação estratégica**
+      Escore de risco por município, agrupamento em quatro perfis e comparação de
+      ritmo até a meta de 2030. O quinto mais crítico reúne 1.028 municípios, 690
+      deles no Nordeste. Dois perfis têm o mesmo PIB per capita e taxas de 47,3% e
+      74,0%, o que indica que renda não determina resultado. A classificação de
+      trajetória por município foi removida por ser ruído amostral. Publicadas as
+      tabelas `base_modelagem` e `risco_municipio` na Gold. Detalhes em
+      `reports/aplicacao.md`.
 
 - [ ] **Passo 10 — Orquestração + gates**
       Um comando roda a pipeline inteira. A execução falha quando a qualidade
