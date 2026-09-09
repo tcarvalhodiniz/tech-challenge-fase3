@@ -1,0 +1,150 @@
+{
+  "importancia_permutacao": [
+    {
+      "variavel": "taxa_municipio_ant",
+      "queda_roc_auc": 0.03677,
+      "desvio": 0.00108
+    },
+    {
+      "variavel": "sigla_uf",
+      "queda_roc_auc": 0.01604,
+      "desvio": 0.00057
+    },
+    {
+      "variavel": "meta_municipio",
+      "queda_roc_auc": 0.01518,
+      "desvio": 0.00092
+    },
+    {
+      "variavel": "ideb_municipio",
+      "queda_roc_auc": 0.00551,
+      "desvio": 0.00033
+    },
+    {
+      "variavel": "taxa_uf_ant",
+      "queda_roc_auc": 0.00461,
+      "desvio": 0.00048
+    },
+    {
+      "variavel": "log_populacao_municipio",
+      "queda_roc_auc": 0.00256,
+      "desvio": 0.00022
+    },
+    {
+      "variavel": "saeb_padronizado_municipio",
+      "queda_roc_auc": 0.00221,
+      "desvio": 0.00012
+    },
+    {
+      "variavel": "regiao",
+      "queda_roc_auc": 0.00167,
+      "desvio": 9e-05
+    },
+    {
+      "variavel": "alunos_municipio_ant",
+      "queda_roc_auc": 0.00165,
+      "desvio": 9e-05
+    },
+    {
+      "variavel": "rede",
+      "queda_roc_auc": 0.00123,
+      "desvio": 8e-05
+    },
+    {
+      "variavel": "aprovacao_municipio",
+      "queda_roc_auc": 0.00086,
+      "desvio": 7e-05
+    },
+    {
+      "variavel": "caderno",
+      "queda_roc_auc": 5e-05,
+      "desvio": 4e-05
+    },
+    {
+      "variavel": "sem_historico_municipio",
+      "queda_roc_auc": 0.0,
+      "desvio": 0.0
+    },
+    {
+      "variavel": "log_pib_per_capita_municipio",
+      "queda_roc_auc": -0.0,
+      "desvio": 6e-05
+    }
+  ],
+  "shap": [
+    {
+      "variavel": "taxa_municipio_ant",
+      "magnitude_media": 0.2593,
+      "direcao_efeito": 0.9286
+    },
+    {
+      "variavel": "meta_municipio",
+      "magnitude_media": 0.09879,
+      "direcao_efeito": 0.8448
+    },
+    {
+      "variavel": "ideb_municipio",
+      "magnitude_media": 0.09474,
+      "direcao_efeito": 0.949
+    },
+    {
+      "variavel": "sigla_uf",
+      "magnitude_media": 0.08046,
+      "direcao_efeito": null
+    },
+    {
+      "variavel": "saeb_padronizado_municipio",
+      "magnitude_media": 0.05619,
+      "direcao_efeito": 0.9415
+    },
+    {
+      "variavel": "taxa_uf_ant",
+      "magnitude_media": 0.0484,
+      "direcao_efeito": 0.7981
+    },
+    {
+      "variavel": "regiao",
+      "magnitude_media": 0.04329,
+      "direcao_efeito": null
+    },
+    {
+      "variavel": "log_populacao_municipio",
+      "magnitude_media": 0.03186,
+      "direcao_efeito": -0.8227
+    },
+    {
+      "variavel": "alunos_municipio_ant",
+      "magnitude_media": 0.02582,
+      "direcao_efeito": -0.6749
+    },
+    {
+      "variavel": "aprovacao_municipio",
+      "magnitude_media": 0.02225,
+      "direcao_efeito": 0.6033
+    },
+    {
+      "variavel": "log_pib_per_capita_municipio",
+      "magnitude_media": 0.01038,
+      "direcao_efeito": -0.1651
+    },
+    {
+      "variavel": "rede",
+      "magnitude_media": 0.00847,
+      "direcao_efeito": null
+    },
+    {
+      "variavel": "caderno",
+      "magnitude_media": 0.00257,
+      "direcao_efeito": null
+    },
+    {
+      "variavel": "sem_historico_municipio",
+      "magnitude_media": 0.0,
+      "direcao_efeito": null
+    }
+  ],
+  "amostras": {
+    "permutacao": 120000,
+    "shap": 40000
+  }
+}
