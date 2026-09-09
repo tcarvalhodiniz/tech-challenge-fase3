@@ -25,6 +25,7 @@ from google.cloud import bigquery
 from config import settings
 
 TABELA = "base_modelagem"
+TABELA_RISCO = "risco_municipio"
 
 DESCRICAO = """Base analítica no grão de aluno, pronta para modelagem supervisionada.
 
@@ -57,6 +58,39 @@ DESCRICAO_COLUNAS = {
     "saeb_padronizado_municipio": "Nota Saeb padronizada dos anos iniciais em 2023",
     "log_populacao_municipio": "Log da população do município em 2023 (IBGE)",
     "log_pib_per_capita_municipio": "Log do PIB per capita do município em 2022 (IBGE)",
+}
+
+
+DESCRICAO_RISCO = """Escore de risco educacional por município, para priorização de política pública.
+
+Uma linha por município, com a taxa de alfabetização prevista pelo modelo, o perfil
+socioeducacional atribuído por agrupamento e a distância até a meta de 2030.
+
+A taxa prevista é a média das probabilidades individuais dos alunos do município. É
+nesse nível que o modelo é confiável: no aluno o ROC-AUC é 0,66, mas as predições
+agregadas por município correlacionam 0,83 com a taxa real, porque os erros
+individuais não são sistemáticos e se cancelam na média.
+
+A coluna amostra_pequena marca municípios com menos de 30 alunos avaliados, cuja
+taxa é instável. Não há classificação de trajetória por município: a variação entre
+2023 e 2024 tem desvio de 16 pontos contra ruído amostral de 4,6, e dois pontos no
+tempo não separam mudança real de sorteio."""
+
+DESCRICAO_COLUNAS_RISCO = {
+    "id_municipio": "Código IBGE de 7 dígitos",
+    "sigla_uf": "UF do município",
+    "regiao": "Região do município",
+    "alunos": "Alunos avaliados em 2024 no município",
+    "taxa_prevista": "Taxa de alfabetização prevista pelo modelo, em %",
+    "taxa_observada": "Taxa de alfabetização observada em 2024, em %",
+    "taxa_anterior": "Taxa observada em 2023, em %",
+    "ideb": "IDEB dos anos iniciais em 2023",
+    "amostra_pequena": "Verdadeiro quando há menos de 30 alunos avaliados",
+    "perfil_nome": "Perfil socioeducacional atribuído por agrupamento",
+    "meta_2030": "Meta de alfabetização do município para 2030, em %",
+    "realizado_2023": "Realizado em 2023, da Gold da Fase 2",
+    "realizado_2024": "Realizado em 2024, da Gold da Fase 2",
+    "distancia_meta_2030": "Pontos percentuais entre o realizado de 2024 e a meta de 2030",
 }
 
 
@@ -102,6 +136,36 @@ def publicar(df: pd.DataFrame, client=None) -> str:
     return destino
 
 
+def publicar_risco(client=None) -> str:
+    """Publica o escore por município, que é a saída consumível por um gestor."""
+    client = client or bigquery.Client(project=settings.BILLING_PROJECT_ID)
+    caminho = os.path.join(settings.PATHS["processed"], "risco_municipio.parquet")
+    df = pd.read_parquet(caminho)
+
+    descartar = [c for c in ("perfil", "pib_per_capita_log", "populacao_log") if c in df.columns]
+    df = df.drop(columns=descartar)
+    for c in df.select_dtypes(include=["Float64"]).columns:
+        df[c] = df[c].astype("float64")
+    for c in df.select_dtypes(include=["Int64"]).columns:
+        df[c] = df[c].astype("float64" if df[c].isna().any() else "int64")
+
+    destino = f"{settings.BILLING_PROJECT_ID}.{settings.GOLD_DATASET}.{TABELA_RISCO}"
+    client.load_table_from_dataframe(
+        df, destino,
+        job_config=bigquery.LoadJobConfig(write_disposition="WRITE_TRUNCATE"),
+    ).result()
+
+    tabela = client.get_table(destino)
+    tabela.description = DESCRICAO_RISCO
+    tabela.schema = [
+        bigquery.SchemaField(f.name, f.field_type, mode=f.mode,
+                             description=DESCRICAO_COLUNAS_RISCO.get(f.name))
+        for f in tabela.schema
+    ]
+    client.update_table(tabela, ["description", "schema"])
+    return destino
+
+
 def ler_gold(client=None) -> pd.DataFrame:
     """
     Lê a base de volta do BigQuery.
@@ -127,10 +191,16 @@ def main():
     print(f"\npublicado: {destino}")
     print(f"  {tabela.num_rows:,} linhas | {tabela.num_bytes/1e6:.1f} MB")
 
+    if os.path.exists(os.path.join(settings.PATHS["processed"], "risco_municipio.parquet")):
+        destino_risco = publicar_risco(client)
+        tr = client.get_table(destino_risco)
+        print(f"publicado: {destino_risco}")
+        print(f"  {tr.num_rows:,} linhas | {tr.num_bytes/1e6:.1f} MB")
+
     print(f"\ndataset {settings.GOLD_DATASET} agora:")
     for t in sorted(client.list_tables(settings.GOLD_DATASET), key=lambda x: x.table_id):
         tb = client.get_table(f"{settings.GOLD_DATASET}.{t.table_id}")
-        fase = "Fase 3" if t.table_id == TABELA else "Fase 2"
+        fase = "Fase 3" if t.table_id in (TABELA, TABELA_RISCO) else "Fase 2"
         print(f"  {t.table_id:24s} {tb.num_rows:>10,} linhas   {fase}")
 
     relatorio = os.path.join(settings.PATHS["reports"], "gold_fase3.json")

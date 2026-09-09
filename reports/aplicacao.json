@@ -1,0 +1,64 @@
+{
+  "municipios": 5517,
+  "perfis": [
+    {
+      "perfil": 3,
+      "municipios": 1590,
+      "taxa_prevista": 47.31,
+      "taxa_anterior": 39.95,
+      "ideb": 4.85,
+      "populacao": 12542.75,
+      "pib_per_capita": 16579.94,
+      "perfil_nome": "pequeno de baixa renda, desempenho crítico"
+    },
+    {
+      "perfil": 2,
+      "municipios": 1038,
+      "taxa_prevista": 62.07,
+      "taxa_anterior": 60.77,
+      "ideb": 6.03,
+      "populacao": 63996.72,
+      "pib_per_capita": 49273.11,
+      "perfil_nome": "urbano de grande porte"
+    },
+    {
+      "perfil": 0,
+      "municipios": 1538,
+      "taxa_prevista": 70.4,
+      "taxa_anterior": 74.06,
+      "ideb": 6.5,
+      "populacao": 5638.06,
+      "pib_per_capita": 47744.08,
+      "perfil_nome": "pequeno e próspero"
+    },
+    {
+      "perfil": 1,
+      "municipios": 1351,
+      "taxa_prevista": 73.99,
+      "taxa_anterior": 74.45,
+      "ideb": 6.08,
+      "populacao": 9324.95,
+      "pib_per_capita": 16586.56,
+      "perfil_nome": "pequeno de baixa renda, bom desempenho"
+    }
+  ],
+  "ritmo_2030": {
+    "municipios_com_serie": 5319,
+    "taxa_media_2024": 63.42,
+    "meta_media_2030": 80.0,
+    "ritmo_necessario_pp_ano": 2.76,
+    "ritmo_observado_pp_ano": 2.68,
+    "defasagem_pp_ano": -0.08,
+    "desvio_da_variacao_municipal_pp": 16.35,
+    "ruido_amostral_estimado_pp": 4.63,
+    "ja_atingiram_a_meta": 1142
+  },
+  "corte_quinto_critico": 49.27,
+  "criticos_por_regiao": {
+    "Nordeste": 690,
+    "Norte": 211,
+    "Sul": 93,
+    "Sudeste": 20,
+    "Centro-Oeste": 14
+  }
+}
