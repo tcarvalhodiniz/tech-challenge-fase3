@@ -182,7 +182,8 @@ tech-challenge-fase3/
 │   ├── preprocessing/ # construção da base e transformações
 │   ├── modeling/      # treino, tuning e pipeline do modelo
 │   ├── evaluation/    # métricas, validação e gates
-│   └── visualization/ # gráficos e material de apoio
+│   ├── visualization/ # gráficos e material de apoio
+│   └── export/        # publicação da camada Gold no BigQuery
 ├── reports/           # métricas persistidas e relatórios
 ├── images/            # figuras geradas pela análise
 └── docs/              # planejamento e decisões analíticas

@@ -1,0 +1,32 @@
+{
+  "tabela": "tech-challenge-fiap-501217.alfabetizacao_gold.base_modelagem",
+  "linhas": 1851852,
+  "megabytes": 203.0,
+  "colunas": [
+    "id_municipio",
+    "rede",
+    "caderno",
+    "alfabetizado",
+    "meta_municipio",
+    "sigla_uf",
+    "regiao",
+    "taxa_municipio_ant",
+    "alunos_municipio_ant",
+    "taxa_uf_ant",
+    "ideb_municipio",
+    "aprovacao_municipio",
+    "saeb_padronizado_municipio",
+    "log_populacao_municipio",
+    "log_pib_per_capita_municipio",
+    "sem_historico_municipio"
+  ],
+  "linhagem": {
+    "gold_fase_2": "meta_municipio, de indicador_municipio",
+    "microdados": "basedosdados.br_inep_avaliacao_alfabetizacao.alunos",
+    "externas": [
+      "br_inep_ideb",
+      "br_ibge_pib",
+      "br_ibge_populacao"
+    ]
+  }
+}
