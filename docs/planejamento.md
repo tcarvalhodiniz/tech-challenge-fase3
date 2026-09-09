@@ -124,6 +124,7 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       Um comando roda a pipeline inteira. A execução falha quando a qualidade
       cai abaixo do limiar ou o modelo não supera o baseline.
 
-- [ ] **Passo 11 — README, documentação e vídeo**
-      Fechar as 11 seções do README, a documentação técnica e o vídeo executivo
-      de até 5 minutos.
+- [x] **Passo 11 — README, documentação e vídeo**
+      As 11 seções do README preenchidas, roteiro do vídeo com marcação de tempo
+      por slide (744 palavras, 4:57 em ritmo normal) e apresentação de 12 slides
+      no sistema visual da Fase 2. A pasta `docs/video/` aguarda a gravação.
