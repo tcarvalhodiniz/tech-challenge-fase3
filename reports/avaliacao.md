@@ -22,7 +22,7 @@ nível de decisão o modelo é de fato útil.
 
 A revocação de 0,339 na classe negativa é o número mais importante deste
 relatório, e o mais desconfortável. No limiar padrão, **o modelo encontra apenas
-34% das crianças que não serão alfabetizadas** — exatamente as que uma política
+34% das crianças que não serão alfabetizadas**, exatamente as que uma política
 pública precisaria alcançar.
 
 A causa é o limiar de 0,5, que maximiza acurácia. Como 59,78% dos alunos são
@@ -102,8 +102,9 @@ municípios em risco e sobre quem tende a não atingir as metas.
 A curva é plana. Multiplicar o treino por seis não move a terceira casa decimal.
 
 Isso fecha a questão aberta no passo anterior: o limite não é volume de dados nem
-escolha de algoritmo, é a **granularidade da informação disponível**. Todas as 14
-features descrevem o município; nenhuma descreve a criança, o professor ou a
+escolha de algoritmo, é a **granularidade da informação disponível**. Doze das 14
+features descrevem o município ou a UF, e as duas restantes, `rede` e `caderno`, são
+atributos administrativos do aluno; nenhuma descreve a criança em si, o professor ou a
 família. Dois alunos do mesmo município e da mesma rede são indistinguíveis para o
 modelo, e é aí que mora a variância que sobra.
 

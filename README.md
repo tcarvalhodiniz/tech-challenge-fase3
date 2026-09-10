@@ -31,8 +31,8 @@ e a partir do modelo responder:
 - Quais regiões possuem padrões semelhantes?
 - Como prever municípios que podem não atingir as metas futuras?
 
-O foco não é maximizar métrica, e sim produzir inteligência aplicável à política
-pública.
+O objetivo é produzir inteligência aplicável à política pública, e a métrica
+serve a esse propósito.
 
 ## 3. Descrição da base utilizada
 
@@ -70,7 +70,7 @@ Das 14 variáveis do modelo final, apenas uma vem da Gold:
 | Fontes públicas externas (IDEB, IBGE) | 5 |
 | Gold da Fase 2 | 1 (`meta_municipio`) |
 
-O motivo não é desuso da camada, e sim o resultado do tratamento de vazamento.
+O motivo é o tratamento de vazamento, que removeu as demais colunas da Gold.
 As colunas `taxa_municipio`, `gap_municipio`, `atingiu_meta` e `taxa_uf` são
 agregados calculados **no mesmo período** que o alvo, a partir dos próprios alunos
 que se quer prever, e só existem depois da prova aplicada. `meta_uf` e `gap_uf`
@@ -104,7 +104,7 @@ prova aplicada, quando a predição já não teria valor:
 | `preenchimento_caderno` | só existe após a aplicação |
 
 A regra está declarada em [`config/settings.py`](config/settings.py) e é aplicada
-pela pipeline, não manualmente.
+pela pipeline, sem intervenção manual.
 
 ## 4. Etapas de modelagem
 
@@ -150,7 +150,7 @@ da predição. Como isso exige um ano anterior, a população modelada passa a s
 Agregados por escola foram testados e descartados. A taxa da escola no ano anterior
 rendeu correlação de apenas +0,100, e a causa não era amostra pequena: das 36.051
 escolas presentes nos dois anos, 35.187 aparecem em municípios diferentes. A fonte
-descreve `id_escola` como *"Máscara do código da escola (códigos fictícios)"* — é um
+descreve `id_escola` como *"Máscara do código da escola (códigos fictícios)"*. É um
 identificador anonimizado, reatribuído a cada edição. O mesmo vale para `id_aluno`.
 Só o `id_municipio` é estável, por ser o código IBGE.
 
@@ -195,7 +195,7 @@ A resposta foi enriquecer a base com os indicadores socioeconômicos que faltava
 que levou o ganho a 3,83 pontos. Ainda insuficiente.
 
 A medição do teto explicou por quê. Substituindo o modelo pela taxa real do município
-no próprio ano — o oráculo que a correção de vazamento removeu — a acurácia chega a
+no próprio ano (o oráculo que a correção de vazamento removeu), a acurácia chega a
 64,32%, um ganho de 4,55 pontos. **Nem o oráculo passaria.** O critério era
 inatingível por construção, porque a variância restante está dentro do município e
 nenhuma variável da base a alcança.
@@ -254,7 +254,8 @@ atribuição aleatória de prova.
 
 **Ressalva sobre causalidade.**
 O modelo mede associação dentro do que enxerga, e o
-que ele enxerga são catorze variáveis de município. Não há nenhuma sobre a criança, o
+que ele enxerga são doze variáveis de município ou UF e duas do aluno, `rede` e
+`caderno`, ambas administrativas. Não há nenhuma sobre a criança em si, o
 professor ou a família, então o território absorve tudo o que está correlacionado com
 ele. Subir o IDEB não causa alfabetização: ambos são consequência da mesma qualidade
 de ensino.
@@ -305,7 +306,7 @@ leitura de ritmo é agregada, onde o erro de amostragem se cancela.
 
 **Escopo da população.** Os 513 mil alunos sem prova aplicada não
 entram na modelagem, porque as variáveis que os identificam são as excluídas por
-vazamento. O modelo prevê desempenho entre quem é avaliado, não participação.
+vazamento. O modelo prevê desempenho entre quem é avaliado; participação fica fora do escopo.
 
 **Causalidade.** A ressalva da seção 7 vale para todos os resultados.
 

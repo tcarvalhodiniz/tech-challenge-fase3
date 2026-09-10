@@ -148,6 +148,6 @@ mas não separa as classes de forma limpa, e a acurácia fica 3,83 pontos acima 
 chutar sempre a classe majoritária.
 
 Isso não é falha de modelagem. É o limite do que dados municipais permitem dizer
-sobre uma criança específica. A aplicação prática correta não é decidir sobre um
-aluno, e sim **ordenar territórios por risco**, que é o que o passo de aplicação
+sobre uma criança específica. A aplicação prática correta é ordenar territórios por risco em vez de decidir sobre um
+aluno, que é o que o passo de aplicação
 estratégica desenvolve.

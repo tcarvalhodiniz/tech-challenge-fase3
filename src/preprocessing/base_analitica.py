@@ -8,7 +8,7 @@ tudo em parquet.
 As colunas de vazamento (`proficiencia` e companhia) **são extraídas de
 propósito**: elas sustentam a evidência da análise exploratória que justifica a
 exclusão. Quem as remove é a pipeline de modelagem, lendo a lista declarada em
-`config.settings.COLUNAS_VAZAMENTO` — nunca uma remoção manual espalhada pelo
+`config.settings.COLUNAS_VAZAMENTO`, nunca uma remoção manual espalhada pelo
 código.
 
 Uso:
@@ -90,7 +90,7 @@ def sql_alunos_municipio() -> str:
 
 
 def sql_indicador_uf() -> str:
-    """Indicador agregado por UF — tabela pequena, juntada em memória."""
+    """Indicador agregado por UF; tabela pequena, juntada em memória."""
     return f"""
     SELECT sigla_uf, ano, rede,
            taxa_realizada AS taxa_uf,
@@ -112,7 +112,7 @@ def custo_consulta(client: bigquery.Client, sql: str) -> dict:
 
 
 def derivar_territorio(df: pd.DataFrame) -> pd.DataFrame:
-    """UF e região a partir do código IBGE — cobertura total, sem depender do join."""
+    """UF e região a partir do código IBGE, com cobertura total e sem depender do join."""
     prefixo = df["id_municipio"].str[:2]
     df["sigla_uf"] = prefixo.map(UFS)
     df["regiao"] = df["id_municipio"].str[:1].map(REGIOES)
@@ -150,7 +150,7 @@ def validar(df: pd.DataFrame) -> dict:
     # o alvo não pode faltar: sem ele a linha não serve para treino supervisionado
     if resumo["alvo_nulo"] > 0:
         raise ValueError(
-            f"{resumo['alvo_nulo']} linhas sem alvo — investigar antes de prosseguir"
+            f"{resumo['alvo_nulo']} linhas sem alvo; investigar antes de prosseguir"
         )
     return resumo
 
@@ -159,7 +159,7 @@ def main():
     client = bigquery.Client(project=settings.BILLING_PROJECT_ID)
 
     custo = custo_consulta(client, sql_alunos_municipio())
-    print(f"FinOps — varredura estimada: {custo['gb_processados']} GB "
+    print(f"FinOps: varredura estimada: {custo['gb_processados']} GB "
           f"(US$ {custo['custo_usd']})")
 
     print("Consultando o BigQuery...")
