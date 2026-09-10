@@ -125,6 +125,5 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       cai abaixo do limiar ou o modelo não supera o baseline.
 
 - [x] **Passo 11 — README, documentação e vídeo**
-      As 11 seções do README preenchidas, roteiro do vídeo com marcação de tempo
-      por slide (744 palavras, 4:57 em ritmo normal) e apresentação de 12 slides
-      no sistema visual da Fase 2. A pasta `docs/video/` aguarda a gravação.
+      As 11 seções do README preenchidas e apresentação de 12 slides no sistema
+      visual da Fase 2. A pasta `docs/video/` aguarda a gravação.
