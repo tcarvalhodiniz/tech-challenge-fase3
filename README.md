@@ -182,6 +182,7 @@ tech-challenge-fase3/
 │   ├── preprocessing/ # construção da base e transformações
 │   ├── modeling/      # treino, tuning e pipeline do modelo
 │   ├── evaluation/    # métricas, validação e gates
+│   ├── pipeline.py    # orquestração das nove etapas
 │   ├── visualization/ # gráficos e material de apoio
 │   └── export/        # publicação da camada Gold no BigQuery
 ├── reports/           # métricas persistidas e relatórios
@@ -201,7 +202,19 @@ pip install -r requirements.txt
 export GOOGLE_APPLICATION_CREDENTIALS=/caminho/para/chave.json
 ```
 
-_Comando único da pipeline: a preencher no Passo 10._
+**Executar a pipeline completa**
+
+```bash
+python -m src.pipeline
+```
+
+Nove etapas, da extração à publicação na Gold, com dependências declaradas. Etapas
+cujos artefatos já existem são puladas; `--do-inicio` refaz tudo e `--somente-local`
+pula o que depende do BigQuery.
+
+Dois pontos interrompem a execução: a validação de qualidade, quando a aprovação
+cai abaixo de 90%, e o treino, quando o modelo não alcança o desempenho declarado
+em [`config/settings.py`](config/settings.py).
 
 ---
 

@@ -1,0 +1,55 @@
+{
+  "segundos_total": 211.3,
+  "etapas": [
+    {
+      "etapa": "base_analitica",
+      "situacao": "pulada",
+      "detalhe": "artefatos presentes",
+      "segundos": 0.0
+    },
+    {
+      "etapa": "enriquecimento",
+      "situacao": "pulada",
+      "detalhe": "artefatos presentes",
+      "segundos": 0.0
+    },
+    {
+      "etapa": "features",
+      "situacao": "pulada",
+      "detalhe": "artefatos presentes",
+      "segundos": 0.0
+    },
+    {
+      "etapa": "qualidade",
+      "situacao": "concluida",
+      "segundos": 2.7
+    },
+    {
+      "etapa": "treino",
+      "situacao": "pulada",
+      "detalhe": "artefatos presentes",
+      "segundos": 0.0
+    },
+    {
+      "etapa": "avaliacao",
+      "situacao": "concluida",
+      "segundos": 152.3
+    },
+    {
+      "etapa": "interpretabilidade",
+      "situacao": "concluida",
+      "segundos": 34.8
+    },
+    {
+      "etapa": "aplicacao",
+      "situacao": "pulada",
+      "detalhe": "artefatos presentes",
+      "segundos": 0.0
+    },
+    {
+      "etapa": "publicar_gold",
+      "situacao": "concluida",
+      "segundos": 21.5
+    }
+  ]
+}

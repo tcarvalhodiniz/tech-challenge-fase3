@@ -1,0 +1,16 @@
+{
+  "total": 1851852,
+  "aprovados": 1851852,
+  "quarentena": 0,
+  "pct_qualidade": 100.0,
+  "motivos": {
+    "alvo_ausente": 0,
+    "alvo_fora_do_dominio": 0,
+    "municipio_malformado": 0,
+    "taxa_municipio_ant_fora_da_faixa": 0,
+    "taxa_uf_ant_fora_da_faixa": 0,
+    "meta_municipio_fora_da_faixa": 0,
+    "aprovacao_municipio_fora_da_faixa": 0,
+    "ideb_fora_da_escala": 0
+  }
+}

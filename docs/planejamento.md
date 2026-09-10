@@ -120,9 +120,13 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       tabelas `base_modelagem` e `risco_municipio` na Gold. Detalhes em
       `reports/aplicacao.md`.
 
-- [ ] **Passo 10 — Orquestração + gates**
-      Um comando roda a pipeline inteira. A execução falha quando a qualidade
-      cai abaixo do limiar ou o modelo não supera o baseline.
+- [x] **Passo 10 — Orquestração + gates**
+      `python -m src.pipeline` roda as nove etapas com dependências declaradas,
+      pulando o que já está materializado. Dois gates interrompem: qualidade
+      abaixo de 90% de aprovação e desempenho abaixo do declarado. O gate de
+      qualidade estava em `settings.py` desde o primeiro commit sem nunca ter
+      sido aplicado, e agora valida seis regras com quarentena que preserva o
+      motivo. Detalhes em `reports/orquestracao.md`.
 
 - [ ] **Passo 11 — README, documentação e vídeo**
       Fechar as 11 seções do README, a documentação técnica e o vídeo executivo
