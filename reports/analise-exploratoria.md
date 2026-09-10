@@ -108,7 +108,7 @@ A capacidade preditiva, portanto, depende do contexto territorial.
 ![Taxa do município por desfecho](../images/05_taxa_municipio_por_alvo.png)
 
 A separação entre as curvas existe, mas há bastante sobreposição. É o teto realista
-do projeto: um modelo informativo, não determinístico.
+do projeto: um modelo informativo, sem pretensão de acerto individual.
 
 ## 5. Problemas encontrados nos dados
 

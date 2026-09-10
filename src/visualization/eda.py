@@ -2,7 +2,7 @@
 Análise exploratória da base analítica.
 
 Gera as figuras de `images/` e o resumo estatístico de `reports/`. Cada função
-responde a uma pergunta específica; nenhuma imprime conclusão — a leitura fica
+responde a uma pergunta específica; nenhuma imprime conclusão; a leitura fica
 no relatório, que é escrito a partir destes números.
 
 Uso:
@@ -82,7 +82,7 @@ def fig_alvo_por_regiao(df):
 
 
 def fig_ausencia(df):
-    """Quem não fez a prova, por região — entra no indicador como não alfabetizado."""
+    """Quem não fez a prova, por região; entra no indicador como não alfabetizado."""
     aus = df.groupby("regiao")["proficiencia"].apply(lambda s: 100 * s.isna().mean())
     aus = aus.reindex(ORDEM_REGIAO).sort_values()
 
@@ -155,7 +155,7 @@ def fig_ausentes(df):
 
 
 def estatisticas(df):
-    """Números que sustentam o relatório — gravados, não só exibidos."""
+    """Números que sustentam o relatório, gravados em vez de só exibidos."""
     fez = df[df["proficiencia"].notna()]
     zeros = df[df[settings.ALVO] == 0]
     concordancia = float(

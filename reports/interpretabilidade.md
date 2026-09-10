@@ -112,7 +112,8 @@ A pergunta sobre quais variáveis influenciam o modelo tem resposta direta nas
 tabelas acima: a taxa histórica do município, seguida da UF e da meta municipal.
 
 A pergunta sobre quais fatores impactam a alfabetização exige mais cuidado. O
-modelo enxerga catorze variáveis, todas de município, e nenhuma sobre a criança, o
+modelo enxerga doze variáveis de município ou UF e duas do aluno, `rede` e
+`caderno`, ambas administrativas, e nenhuma sobre a criança em si, o
 professor, a turma ou a família. O território acaba absorvendo tudo o que está
 correlacionado com ele.
 

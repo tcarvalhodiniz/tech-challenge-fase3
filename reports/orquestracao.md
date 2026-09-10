@@ -102,4 +102,4 @@ PIPELINE INTERROMPIDA em 'interpretabilidade'
 ```
 
 Etapas cujas entradas não existem são marcadas como bloqueadas em vez de falharem,
-já que a causa é diferente: não é erro de execução, é dependência ausente.
+já que a causa é diferente: dependência ausente, e não erro de execução.

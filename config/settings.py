@@ -27,7 +27,7 @@ PATHS = {
 # ---------------------------------------------------------------------------
 # Fontes
 #   Gold: construída no Tech Challenge da Fase 2 (mesmo projeto GCP)
-#   Microdados: Base dos Dados (BigQuery público) — grão de aluno
+#   Microdados: Base dos Dados (BigQuery público), no grão de aluno
 # ---------------------------------------------------------------------------
 BILLING_PROJECT_ID = os.getenv("GCP_PROJECT", "tech-challenge-fiap-501217")
 
@@ -53,7 +53,7 @@ ALVO = "alfabetizado"  # 0 = não alfabetizado, 1 = alfabetizado
 # Anti-vazamento (data leakage)
 #   `proficiencia` DEFINE o alvo (alfabetizado = proficiencia >= 743).
 #   Mantê-la como feature daria acerto perfeito e modelo inútil. As demais só
-#   existem depois da prova aplicada — informação indisponível no momento da
+#   existem depois da prova aplicada, informação indisponível no momento da
 #   predição. Todas ficam fora do conjunto de treino.
 # ---------------------------------------------------------------------------
 COLUNAS_VAZAMENTO = [
@@ -99,8 +99,8 @@ VALID_SIZE = 0.2
 N_FOLDS = 5
 
 # ---------------------------------------------------------------------------
-# Gates — a execução falha quando algum limiar não é atendido
-#   Um limiar definido depois de ver o resultado não é gate, é carimbo. Estes
+# Gates: a execução falha quando algum limiar não é atendido
+#   Um limiar definido depois de ver o resultado perde a função. Estes
 #   valem como compromisso assumido antes: mudá-los exige justificar o porquê.
 # ---------------------------------------------------------------------------
 GATES = {
@@ -125,8 +125,8 @@ GATES = {
 # restrita ao município, já que id_aluno e id_escola são reaproveitados entre anos.
 #
 # A medição do teto mostrou que o critério era inatingível. Substituindo o modelo
-# pela taxa real do município no próprio ano — o oráculo que a correção de
-# vazamento removeu e que nenhum modelo honesto pode ter — a acurácia chega a
+# pela taxa real do município no próprio ano (o oráculo que a correção de
+# vazamento removeu e que nenhum modelo honesto pode ter), a acurácia chega a
 # 64,32% no conjunto de teste, um ganho de 4,55 pontos. Menos que os 5,00
 # exigidos. Nenhum modelo passaria, porque a variância restante está dentro do
 # município e não há variável na base que a alcance.
