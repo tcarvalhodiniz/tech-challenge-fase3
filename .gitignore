@@ -28,3 +28,6 @@ env/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Arquivos temporários do Office
+~$*

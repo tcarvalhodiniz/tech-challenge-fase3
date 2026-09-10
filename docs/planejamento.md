@@ -128,6 +128,6 @@ a generalização. A validação usa agrupamento por `id_municipio`.
       sido aplicado, e agora valida seis regras com quarentena que preserva o
       motivo. Detalhes em `reports/orquestracao.md`.
 
-- [ ] **Passo 11 — README, documentação e vídeo**
-      Fechar as 11 seções do README, a documentação técnica e o vídeo executivo
-      de até 5 minutos.
+- [x] **Passo 11 — README, documentação e vídeo**
+      As 11 seções do README preenchidas e apresentação de 12 slides no sistema
+      visual da Fase 2. A pasta `docs/video/` aguarda a gravação.
