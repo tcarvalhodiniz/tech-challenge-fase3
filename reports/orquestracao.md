@@ -37,8 +37,8 @@ o que permite comparar execuções.
 ## 2. O gate de qualidade, que estava declarado sem uso
 
 O limiar `pct_qualidade_minimo` de 90% existia em `config/settings.py` desde o
-primeiro commit e nunca havia sido aplicado. Um dos princípios declarados no
-planejamento é que nada calculado fica órfão, e o próprio gate estava violando isso.
+primeiro commit e nunca havia sido aplicado. Um dos princípios do projeto é que nada
+calculado fica órfão, e o próprio gate estava violando isso.
 
 A validação aplica seis regras sobre a base de modelagem e separa os reprovados em
 quarentena, com o motivo anexado:

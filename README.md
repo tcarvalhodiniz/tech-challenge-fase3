@@ -6,6 +6,9 @@ ao final do 2º ano do ensino fundamental, a partir de variáveis educacionais,
 territoriais e socioeconômicas. Os dados partem da **camada Gold** construída no
 Tech Challenge da Fase 2.
 
+🎥 **Vídeo executivo:** [Loom](https://www.loom.com/share/b37b371a3e7a4d2f93f9b38111b7256f) · também em [`docs/video/video-executivo.mp4`](docs/video/video-executivo.mp4)
+📑 **Apresentação:** [`docs/apresentacao.pptx`](docs/apresentacao.pptx)
+
 ---
 
 ## 1. Contexto do problema
@@ -376,7 +379,7 @@ tech-challenge-fase3/
 │   └── export/        # publicação da camada Gold no BigQuery
 ├── reports/           # métricas persistidas e relatórios
 ├── images/            # figuras geradas pela análise
-└── docs/              # planejamento e decisões analíticas
+└── docs/              # apresentação e vídeo executivo
 ```
 
 ## Como executar
