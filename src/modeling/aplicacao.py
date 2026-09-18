@@ -42,6 +42,7 @@ N_PERFIS = 4
 MINIMO_ALUNOS = 30
 
 PALETA = {"risco": "#C44E52", "ok": "#4C72B0", "ref": "#8C8C8C", "alerta": "#DD8452"}
+VERDE_PERFIL = "#1B6B5A"
 
 
 def _salvar(fig, nome):
@@ -203,6 +204,59 @@ def agrupar_perfis(mun: pd.DataFrame, n=N_PERFIS, seed=None) -> tuple[pd.DataFra
     return mun, resumo.sort_values("taxa_prevista").reset_index(drop=True)
 
 
+def fig_renda_x_desempenho(mun: pd.DataFrame):
+    """
+    Renda contra desempenho, com os dois perfis de baixa renda em destaque.
+
+    O contraste é o achado central do agrupamento e não aparecia em gráfico: dois
+    grupos na mesma faixa de renda com taxas muito distantes. Os outros dois
+    perfis ficam em cinza, como contexto.
+    """
+    CRIT = "pequeno de baixa renda, desempenho crítico"
+    BOM = "pequeno de baixa renda, bom desempenho"
+    d = mun.copy()
+    d["pib"] = np.expm1(d["pib_per_capita_log"])
+
+    fig, ax = plt.subplots(figsize=(8.2, 4.6))
+    for nome in d["perfil_nome"].unique():
+        if nome in (CRIT, BOM):
+            continue
+        g = d[d["perfil_nome"] == nome]
+        ax.scatter(g["pib"], g["taxa_prevista"], s=7, alpha=0.3,
+                   color="#C9D6D1", edgecolors="none")
+
+    for nome, cor, rotulo, lado in [
+        (CRIT, PALETA["risco"], "Baixa renda, desempenho crítico", -1),
+        (BOM, VERDE_PERFIL, "Baixa renda, bom desempenho", 1),
+    ]:
+        g = d[d["perfil_nome"] == nome]
+        ax.scatter(g["pib"], g["taxa_prevista"], s=9, alpha=0.5,
+                   color=cor, edgecolors="none", label=rotulo)
+        mx, my = g["pib"].median(), g["taxa_prevista"].mean()
+        ax.scatter([mx], [my], s=150, color=cor, edgecolors="white", linewidths=2.5, zorder=5)
+        ax.annotate(f"{my:.0f}%", xy=(mx, my), xytext=(52 * lado, 0),
+                    textcoords="offset points", ha="center", va="center",
+                    fontsize=15, fontweight="bold", color=cor, zorder=6,
+                    bbox=dict(boxstyle="round,pad=0.35", fc="white", ec=cor, lw=1.6))
+
+    mediana = d[d["perfil_nome"].isin([CRIT, BOM])]["pib"].median()
+    ax.axvline(mediana, color=PALETA["ref"], ls="--", lw=1.2)
+    ax.annotate("mesma renda", xy=(mediana, 96), xytext=(9, 0),
+                textcoords="offset points", fontsize=10.5, color=PALETA["ref"])
+
+    ax.set_xscale("log")
+    ax.set_xlim(4000, 300000)
+    ax.set_ylim(20, 100)
+    ax.set_xticks([5000, 10000, 25000, 50000, 100000, 250000])
+    ax.set_xticklabels(["5 mil", "10 mil", "25 mil", "50 mil", "100 mil", "250 mil"])
+    ax.set_xlabel("PIB por habitante (R$)")
+    ax.set_ylabel("Taxa de alfabetização prevista (%)")
+    ax.set_title("Municípios de mesma renda, desempenhos opostos", fontsize=13, pad=12)
+    ax.legend(frameon=False, loc="lower right", fontsize=10, markerscale=2.2)
+    ax.spines[["top", "right"]].set_visible(False)
+    return _salvar(fig, "18_renda_x_desempenho.png")
+
+
 def fig_risco(mun: pd.DataFrame):
     """Distribuição da taxa prevista, destacando o quinto mais crítico."""
     corte = mun["taxa_prevista"].quantile(0.20)
@@ -270,7 +324,7 @@ def main():
     print(f"\nquinto mais crítico: {len(criticos):,} municípios (taxa prevista até {corte:.1f}%)")
     print(criticos["regiao"].value_counts().to_string())
 
-    figuras = [fig_risco(d), fig_perfis(perfis)]
+    figuras = [fig_risco(d), fig_perfis(perfis), fig_renda_x_desempenho(d)]
     print("\nfiguras:")
     for f in figuras:
         print("  ", os.path.basename(f))
